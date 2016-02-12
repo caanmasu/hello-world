@@ -1,0 +1,81 @@
+import matplotlib.pyplot as plt
+g = 9.8
+m = 68.1
+c = 12.5
+v = 0.0
+v2 = 0.0
+t = 0
+ts = 2
+vs = 0.0
+e = 2.7182
+velocidadsig = []
+tiemposig = []
+velocidad = []
+tiempo = []
+Et = []
+et = []
+ea = []
+t1 = []
+
+while t<300:
+    t1.append(t)
+    t = t + 1
+
+print "t     v(t)an        v(t)ap         Et                et          ea"
+
+t = 0
+while t<600:
+    vs = v  + (g-(c/m)*v)*(ts-t)
+    velocidadsig.append(vs)
+    tiemposig.append(ts)
+    t = ts
+    ts = ts+2
+    v = vs
+t = 0
+while t<600:
+    
+    v2 = (g*m/c)*(1-e**(-(c/m)*t))
+    velocidad.append(v2)
+    tiempo.append(t)
+    t = t + 2
+    
+t = 0
+while t<300:
+    Et.append(velocidad[t]-velocidadsig[t])
+    t = t + 1
+    
+t = 0
+while t<300:    
+    et.append(Et[t]/velocidadsig[t]*100)
+    t = t + 1
+    
+t = 0
+while t<150:
+    ea.append((velocidadsig[t+1]-velocidadsig[t])/velocidadsig[t+1]*100)
+    t = t + 1
+    
+while t<300:
+    ea.append(0)
+    t = t + 1
+    
+t = 0
+while t<75:
+    print "%d     %f     %f     %f     %f     %f" % (t, velocidad[t], velocidadsig[t], Et[t], et[t], ea[t])
+    t = t + 2
+    
+    
+#Et = error verdadero
+#et = error porcentual relativo
+#ea = error porcentual relativo aproximado
+#Es = error tolerado
+
+plt.plot (t1, ea)
+plt.plot (t1, et)
+plt.axis([-50, 300, -150, 50])
+plt.show()
+Es = 0.5*10**(2-4)
+
+t=0
+while abs(ea[t])>Es:
+        t = t + 1
+print "El valor de t de un error confiable es de %d" % t
