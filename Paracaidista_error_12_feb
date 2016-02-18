@@ -21,7 +21,7 @@ while t<300:
     t1.append(t)
     t = t + 1
 
-print "t     v(t)an        v(t)ap         Et                et          ea"
+print ("t     v(t)an        v(t)ap         Et                et          ea")
 
 t = 0
 while t<600:
@@ -41,7 +41,7 @@ while t<600:
     
 t = 0
 while t<300:
-    Et.append(velocidad[t]-velocidadsig[t])
+    Et.append(abs(velocidad[t]-velocidadsig[t]))
     t = t + 1
     
 t = 0
@@ -51,7 +51,7 @@ while t<300:
     
 t = 0
 while t<150:
-    ea.append((velocidadsig[t+1]-velocidadsig[t])/velocidadsig[t+1]*100)
+    ea.append(abs((velocidadsig[t+1]-velocidadsig[t])/velocidadsig[t+1]*100))
     t = t + 1
     
 while t<300:
@@ -60,7 +60,7 @@ while t<300:
     
 t = 0
 while t<75:
-    print "%d     %f     %f     %f     %f     %f" % (t, velocidad[t], velocidadsig[t], Et[t], et[t], ea[t])
+    print ("%d     %f     %f     %f     %f     %f" % (t, velocidad[t], velocidadsig[t], Et[t], et[t], ea[t]))
     t = t + 2
     
     
@@ -69,13 +69,14 @@ while t<75:
 #ea = error porcentual relativo aproximado
 #Es = error tolerado
 
-plt.plot (t1, ea)
-plt.plot (t1, et)
-plt.axis([-50, 300, -150, 50])
+plt.plot (t1, ea) #azul
+plt.plot (t1, et) #verde
+plt.axis([-10, 100, -10, 80])
+plt.legend( ('Error porcentual relativo', 'Error porcentual relativo aproximado'), loc = 'down right')
 plt.show()
 Es = 0.5*10**(2-4)
 
 t=0
 while abs(ea[t])>Es:
         t = t + 1
-print "El valor de t de un error confiable es de %d" % t
+print ("El valor de t de un error confiable es de %d" % t)
