@@ -1,0 +1,50 @@
+#3.9
+import math
+fac = []
+f = []
+cos = []
+signo = []
+Ea = []
+n = 8
+Es = 0.5*10**(2-n)
+x = 0.3*math.pi
+t = 1
+acum = 1
+fac.append(1)
+while t<18:
+    acum = acum*t
+    if t%2==0:
+        fac.append(acum)
+    t = t + 1
+t = 0
+while t<18:
+    if t%2==0:
+        f.append(x**t)
+    t = t + 1
+    
+t = 0
+while t<9:
+    if t%2==0:
+        signo.append(-1)
+    else:
+        signo.append(1)
+    t = t + 1
+    
+acum = 0
+t = 0
+while t<9:
+    acum = acum + f[t]/fac[t]*signo[t]
+    cos.append(acum)
+    t = t + 1
+    
+t = 0
+while t<8:
+    Ea.append(abs((cos[t+1]-cos[t])/cos[t+1]*100))
+    t = t + 1
+    
+t = 0
+while Ea[t]>Es:
+    t = t + 1
+        
+print (cos)
+print ("Resultado: %d" % t)
