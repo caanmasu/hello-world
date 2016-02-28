@@ -44,9 +44,10 @@ while t<300:
     Et.append(abs(velocidad[t]-velocidadsig[t]))
     t = t + 1
     
-t = 0
+t = 1
+et.append(0)
 while t<300:    
-    et.append(Et[t]/velocidadsig[t]*100)
+    et.append(Et[t]/velocidad[t]*100)
     t = t + 1
     
 t = 0
@@ -65,14 +66,14 @@ while t<75:
     
     
 #Et = error verdadero
-#et = error porcentual relativo
+#et = error porcentual relativo verdadero
 #ea = error porcentual relativo aproximado
 #Es = error tolerado
 
 plt.plot (t1, ea) #azul
 plt.plot (t1, et) #verde
 plt.axis([-10, 100, -10, 80])
-plt.legend( ('Error porcentual relativo', 'Error porcentual relativo aproximado'), loc = 'down right')
+plt.legend( ('Error porcentual relativo verdadero', 'Error porcentual relativo aproximado'), loc = 'upper right')
 plt.show()
 Es = 0.5*10**(2-4)
 
