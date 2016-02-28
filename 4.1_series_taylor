@@ -4,6 +4,7 @@ h = 1
 x = 0
 f = 0
 r = 0
+o = 5
 derivada = [-0.1*x**4-0.15*x**3-0.5*x*x-0.25*x+1.2, -0.4*x**3-0.45*x*x-x-0.25, -1.2*x*x-0.9*x-1, -2.4*x-0.9, -2.4]
 factorial = []
 funcion = []
@@ -16,7 +17,7 @@ acum = 1
 factorial.append(1)
 
 
-while t<4:
+while t<o:
     acum = acum*t
     t = t+1
     factorial.append(acum)
@@ -24,7 +25,7 @@ while t<4:
 print ("Orden     Derivada(x)     Valor        Acumulado       Error")
 
 t = 0
-while t<4:
+while t<o:
     f = f + (derivada[t]*h**t)/factorial[t]
     valor.append((derivada[t]*h**t)/factorial[t])
     funcion.append(f)
@@ -32,18 +33,18 @@ while t<4:
     t = t + 1
 
 y = 0
-while y<4:
+while y<o:
     print ("%d         %f        %f      %f      %f" % (y, derivada[y], valor[y], funcion[y], error[y]))
     y = y + 1
     
 u = []
 g = 0
-while g<4:
+while g<o:
     u.append(g)
     g = g + 1
     
 plt.plot (u, funcion)
 plt.plot (u, error)
-plt.axis([-2, 4, -1, 2])
+plt.axis([-1, 5, -1, 2])
 plt.legend( ('f(x)', 'Error'), loc = 'lower right')
 plt.show()
