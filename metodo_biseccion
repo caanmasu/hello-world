@@ -1,0 +1,44 @@
+import math
+import matplotlib.pyplot as plt
+g = 9.8
+m = 68.1
+t = 10
+v = 40
+x = []
+y = []
+
+c = 1
+
+def funcion(valor):
+    f = ((g*m)/valor)*(1-math.e**((-1)*(valor/m)*t))-v
+    return f
+
+while c<20:
+    x.append(c)
+    y.append(funcion(c))
+    #print ("%d    %f" % (x[c-1], y[c-1]))
+    c = c + 1
+    
+inf = 13.0
+sup = 16.0
+
+h = 0
+
+while (funcion(inf)*funcion(xr))!=0:
+    if (funcion(inf)*funcion(xr))<0:
+        #print (sup)
+        #print (inf)
+        sup=xr
+        xr = (sup+inf)/2
+    else:
+        #print (sup)
+        #print (inf)
+        print ("%f" % funcion(xr))
+        #print ("%f" % funcion(inf)*funcion(xr))
+        inf=xr
+        xr = (sup+inf)/2
+    h = h + 1
+    if h==50:
+        break
+        
+print (xr)
