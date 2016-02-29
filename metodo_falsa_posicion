@@ -1,0 +1,57 @@
+import math
+import matplotlib.pyplot as plt
+g = 9.8
+m = 68.1
+t = 10
+v = 40
+x = []
+y = []
+raiz = []
+c = 1
+print ("# iteración       raíz             et                 ea")
+def funcion(valor):
+    f = ((g*m)/valor)*(1-math.e**((-1)*(valor/m)*t))-v
+    return f
+
+while c<20:
+    x.append(c)
+    y.append(funcion(c))
+    #print ("%d    %f" % (x[c-1], y[c-1]))
+    c = c + 1
+    
+inf = 12.0
+sup = 16.0
+xr = sup - (funcion(sup)*(inf-sup)/(funcion(inf)-funcion(sup)))
+
+h = 0
+
+while (funcion(inf)*funcion(xr))!=0:
+    raiz.append(xr)
+    if (funcion(inf)*funcion(xr))<0:
+        sup=xr
+    else:
+        inf=xr
+    xr = sup - (funcion(sup)*(inf-sup)/(funcion(inf)-funcion(sup)))
+    h = h + 1
+#Errores
+#Error relativo porcentual verdadero
+u = 0
+et = []
+ea = []
+while u<h:
+    et.append((xr-raiz[u])/xr*100)
+    u = u + 1
+    
+#Error relativo porcentual aproximado
+u = 0
+ea.append(100)
+while u<h-1:
+    ea.append((raiz[u]-raiz[u-1])/raiz[u+1]*100)
+    u = u + 1
+    
+u = 0
+while u<h:
+    print ("%d            %f          %f          %f" % (u, raiz[u], et[u], ea[u]))
+    u = u + 1
+    
+print ("Raíz = %f" % xr)
