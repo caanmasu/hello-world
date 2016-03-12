@@ -1,0 +1,16 @@
+x = 1.37
+
+#a
+y = x*x*x-7*x*x+8*x+0.35
+
+er = (y/round(y,2)-1)*100
+print (er)
+
+#b
+z = x*((x-7)*x+8)+0.35
+er2 = (z/round(z,2)-1)*100
+print (er2)
+
+#Diferencia de error a 7 dígitos
+
+print ("%f-%f=%f" % (er, er2, er-er2))
