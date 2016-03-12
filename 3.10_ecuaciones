@@ -1,0 +1,33 @@
+a = 1
+b = 5000.002
+c = 10
+
+#Ecuación 3.12
+
+x1 = (-b+(b*b-4*a*c)**(0.5))/(2*a)
+x2 = (-b-(b*b-4*a*c)**(0.5))/(2*a)
+
+#Ecuación 3.13
+
+X1 = (-2*c)/(b+(b*b-4*a*c)**(0.5))
+X2 = (-2*c)/(b-(b*b-4*a*c)**(0.5))
+
+def truncate(f, n):
+    '''Truncates/pads a float f to n decimal places without rounding'''
+    s = '{}'.format(f)
+    if 'e' in s or 'E' in s:
+        return '{0:.{1}f}'.format(f, n)
+    i, p, d = s.partition('.')
+    return '.'.join([i, (d+'0'*n)[:n]])
+
+#Error relativo porcentual ec. 3.12
+print ("Error relativo porcentual aproximado ecuación 3.12")
+print ("x1:")
+print (((x1/float(truncate(x1, 4))-1))*100)
+print ("x2:")
+print (((x2/float(truncate(x2, 1))-1))*100)
+print ("Error relativo porcentual aproximado ecuación 3.13")
+print ("x1:")
+print (((X1/float(truncate(X1, 4))-1))*100)
+print ("x2:")
+print (((X2/float(truncate(X2, 1))-1))*100)
