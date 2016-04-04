@@ -1,0 +1,41 @@
+print ("Ingrese los valores de la matriz 3x3")
+print ("")
+
+valor = []
+n=0
+while n<12:
+    a = int(input())
+    valor.append(a)
+    n = n + 1
+
+M = [ [valor[0],valor[1],valor[2], valor[3]], [valor[4], valor[5], valor[6], valor[7]], [valor[8],valor[9],valor[10], valor[11]]]
+
+def determinante(Matriz):
+    
+    d1 = M[1][1]*M[2][2]-M[2][1]*M[1][2]
+    d2 = M[1][0]*M[2][2]-M[2][0]*M[1][2]
+    d3 = M[1][0]*M[2][1]-M[2][0]*M[1][1]
+    D = M[0][0]*d1-M[0][1]*d2+M[0][2]*d3
+    return D
+
+det = determinante(M)
+
+M = [ [valor[3],valor[1],valor[2], 0], [valor[7], valor[5], valor[6], 0], [valor[11],valor[9],valor[10], 0]]
+
+k1 = determinante(M)
+
+M = [ [valor[0],valor[3],valor[2], 0], [valor[4], valor[7], valor[6], 0], [valor[8],valor[11],valor[10], 0]]
+
+k2 = determinante(M)
+
+M = [ [valor[0],valor[1],valor[3], 0], [valor[4], valor[5], valor[7], 0], [valor[8],valor[9],valor[11], 0]]
+
+k3 = determinante(M)
+
+x1 = k1/det
+
+x2 = k2/det
+
+x3 = k3/det
+
+print ("x1 = %f, x2 = %f, x3 = %f" % (x1, x2, x3))
