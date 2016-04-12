@@ -1,0 +1,53 @@
+#implementación de los dos primeros pasos de Gauss simple
+
+M = []
+M1 = []
+M2 = []
+
+n = int(input("¿Cuántas incógnitas tiene la matriz? "))
+
+for u in range(n):
+    M.append([0.0]*n)
+
+for i in range(n):
+    k=i+1
+    M1.append(float(input("%d° coeficiente del vector solución = " %k )))
+    M2.insert(i,0.0)
+    for j in range(n):
+        h = j+1
+        M[i][j] = float(input("M[%d][%d] = " %(k,h)))
+def eliminacion():
+    for i in range(n):
+        for j in range(n):
+            if (i==j):
+                p = M[i][j]
+                for s in range(n):
+                    M[i][s]=((M[i][s])/p)
+                M1[i]=((M1[i])/p)
+            else:
+                p=M[j][i]
+                for t in range(n):
+                    M[j][t]=M[j][t]-(p*M[i][t])
+                M1[j]=M1[j]-(p*M1[i])
+                
+eliminacion()
+                
+def sustitucion():
+    i=n-1
+    j=n-1
+    while (i>=0):
+        y = M1[i]
+        while (j>=i):
+            y=y-M2[j]*M[i][j]
+            j -= 1
+        M2[i]=y
+        i -= 1
+        j=n-1
+    print ("")
+    print ("Resultados")
+    print ("")
+    for i in range(0,n):
+        k=i+1
+        print ("x%d = %f"% (k,M2[i]) )
+        
+sustitucion()
