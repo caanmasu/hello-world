@@ -1,0 +1,73 @@
+#Técnica del pivoteo
+
+
+n = int(input("# de incógnitas de la matriz: "))
+M = []
+for z in range(n):
+    M.append([0.0]*n)
+r = []
+x = []
+for i in range(n):
+    k=i+1
+    r.append(float(input("%d° coef del vector de soluciones: "%k)))
+    x.insert(i,0.0)
+    for j in range(n):
+        h = j+1
+        M[i][j] = float(input("[%d][%d] coef de la matriz de coeficientes: " %(k,h)))
+        
+def Pivote():
+    p,k=0,0
+    p=k
+    big = abs(M[k][k])
+    for i in range(k+1,n):
+        dummy = abs(M[i][k])
+        if (dummy>big):
+            big=dummy
+            p=i
+    if (p!=k):
+        for j in range(k,n):
+            dummy=M[p][j]
+            M[p][j]=M[k][j]
+            M[k][j]=dummy
+        dummy=r[p]
+        r[p]=r[k]
+        r[k]=dummy
+        
+Pivote()
+
+def Sustitución():
+    for k in range(n-1):
+        for i in range(k+1,n):
+            factor = M[i][k]/M[k][k]
+            for j in range (k+1,n):
+                M[i][j]=M[i][j]-factor*M[k][j]
+            r[i]=r[i]-factor*r[k]
+            
+Sustitución()
+        
+def Determinante():
+    det = 1
+    d = 0
+    det = M[d][d]*M[d+1][d+1]
+    for d in range(2,n):
+        det = det * M[d][d]
+    print ("\nDet =  %f" % det)
+
+    
+Determinante()
+        
+
+def Eliminación():
+    x[n-1]=r[n-1]/M[n-1][n-1]
+    i=n-1
+    while (i>=0):
+        y = r[i]
+        for j in range(i+1,n):
+            y=y-x[j]*M[i][j]
+        x[i]=y/M[i][i]
+        i -= 1
+    for i in range(n):
+        k=i+1
+        print ("\nX%d = %f" % (k,x[i]))
+
+Eliminación()
