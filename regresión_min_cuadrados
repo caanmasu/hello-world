@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+
+y = []
+t = []
+n = 7
+v1=[1,2,3,4,5,6,7]
+v2=[0.5,2.5,2.0,4.0,3.5,6.0,5.5]
+
+for i in range (n):
+    sumax = sumax + v1[i]
+    sumay = sumay + v2[i]
+    mult = mult + v1[i]*v2[i]
+    sumCuadrado = sumCuadrado + v1[i]**2
+    
+h = (n*mult-(sumax*sumay))/(n*sumCuadrado-sumax**2)
+xP = sumax/n
+yP = sumay/n
+k = yP-h*xP
+
+for j in range(n+1):
+    t.append(j)
+    y.append(k+h*j)
+    
+plt.plot(t,y)
+plt.plot(v1,v2, 'yo')
+plt.axis([0,8,0,7])
+plt.grid()
+plt.show()
